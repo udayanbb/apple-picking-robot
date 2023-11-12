@@ -9,3371 +9,1487 @@
           </cylinder>
         </geometry>
         <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
+          <ambient>0.3 0.15 0.15 1</ambient>
+          <diffuse>0.3 0.15 0.15 1</diffuse>
+          <specular>0.0 0.0 0.0 1</specular>
           <emissive>0 0 0 1</emissive>
         </material>
       </visual>
     </link>
     <link name="branch_aa">
-      <pose relative_to="joint_a_aa">0 0 0.375 0 0 0</pose>
+      <pose relative_to="joint_a_aa">0 0 0.1875 0 0 0</pose>
       <visual name="visual">
         <geometry>
           <cylinder>
-            <radius>0.05</radius>
-            <length>0.75</length>
+            <radius>0.016666666666666666</radius>
+            <length>0.375</length>
           </cylinder>
         </geometry>
         <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
+          <ambient>0.3 0.15 0.15 1</ambient>
+          <diffuse>0.3 0.15 0.15 1</diffuse>
+          <specular>0.0 0.0 0.0 1</specular>
           <emissive>0 0 0 1</emissive>
         </material>
       </visual>
+      <collision name="collision">
+        <geometry>
+          <cylinder>
+            <radius>0.016666666666666666</radius>
+            <length>0.22499999999999998</length>
+          </cylinder>
+        </geometry>
+      </collision>
     </link>
-    <joint name="joint_a_aa" type="universal">
-      <pose relative_to="branch_a">0 0 0.375 -0.33123428664615906 -0.5237806387396209 0</pose>
+    <joint name="joint_a_aa" type="revolute">
+      <pose relative_to="branch_a">0 0 0.1875 0.456165606650471 0.7169131219322384 0</pose>
       <parent>branch_a</parent>
       <child>branch_aa</child>
       <axis>
         <xyz>1 0 0 </xyz>
+        <dynamics>
+          <damping>100</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>5000</spring_stiffness>
+        </dynamics>
+        <limit>
+          <effort>0</effort>
+        </limit>
       </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
     </joint>
-    <link name="branch_aaa">
-      <pose relative_to="joint_aa_aaa">0 0 0.25 0 0 0</pose>
-      <visual name="visual">
+    <link name="apple_aa">
+      <pose relative_to="joint_aa_apple">0 0 0 0 0 0</pose>
+      <visual name="apple">
+        <pose>0 0 0.04 0 0 0</pose>
         <geometry>
-          <cylinder>
-            <radius>0.025</radius>
-            <length>0.5</length>
-          </cylinder>
+          <sphere>
+            <radius>0.03</radius>
+          </sphere>
         </geometry>
         <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
+          <ambient>0.1 0.5 0.2 1</ambient>
+          <diffuse>0.1 0.4 0.2 1</diffuse>
+          <specular>0.2 0.4 0.1 1</specular>
           <emissive>0 0 0 1</emissive>
         </material>
       </visual>
+      <visual name="stalk">
+        <pose>0 0 0.005 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.002</radius>
+            <length>0.01</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <ambient>0.4 0.2 0.1 1</ambient>
+          <diffuse>0.4 0.2 0.1 1</diffuse>
+          <specular>0.2 0.1 0.1 1</specular>
+          <emissive>0 0 0 1</emissive>
+        </material>
+      </visual>
+      <inertial>
+        <pose>0 0 0.04 0 0 0</pose>
+        <mass>0.1</mass>
+        <inertia>
+          <ixx>0.0005</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.0005</iyy>
+          <iyz>0</iyz>
+          <izz>0.0005</izz>
+        </inertia>
+      </inertial>
+      <collision name="collision">
+        <pose>0 0 0.04 0 0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>0.03</radius>
+          </sphere>
+        </geometry>
+      </collision>
     </link>
-    <joint name="joint_aa_aaa" type="universal">
-      <pose relative_to="branch_aa">0 0 0.25 -0.10509935782282681 -0.43943779751392065 0</pose>
+    <joint name="joint_aa_apple" type="universal">
+      <pose relative_to="branch_aa">0.016666666666666666 0 -0.0009109423904477068 0 1.5707963267948966 0</pose>
+      <parent>branch_aa</parent>
+      <child>apple_aa</child>
+      <axis>
+        <xyz>0 1 0 </xyz>
+        <dynamics>
+          <damping>0.001</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0.2</spring_stiffness>
+        </dynamics>
+        <limit>
+          <effort>0</effort>
+        </limit>
+      </axis>
+      <axis2>
+        <xyz>1 0 0 </xyz>
+        <dynamics>
+          <damping>0.001</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0.2</spring_stiffness>
+        </dynamics>
+        <limit>
+          <effort>0</effort>
+        </limit>
+      </axis2>
+    </joint>
+    <link name="branch_aaa">
+      <pose relative_to="joint_aa_aaa">0 0 0.15000000000000002 0 0 0</pose>
+      <visual name="visual">
+        <geometry>
+          <cylinder>
+            <radius>0.0125</radius>
+            <length>0.30000000000000004</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <ambient>0.3 0.15 0.15 1</ambient>
+          <diffuse>0.3 0.15 0.15 1</diffuse>
+          <specular>0.0 0.0 0.0 1</specular>
+          <emissive>0 0 0 1</emissive>
+        </material>
+      </visual>
+      <collision name="collision">
+        <geometry>
+          <cylinder>
+            <radius>0.0125</radius>
+            <length>0.18000000000000002</length>
+          </cylinder>
+        </geometry>
+      </collision>
+    </link>
+    <joint name="joint_aa_aaa" type="revolute">
+      <pose relative_to="branch_aa">0 0 0.15000000000000002 -0.25406766899729927 0.17953710939565276 0</pose>
       <parent>branch_aa</parent>
       <child>branch_aaa</child>
       <axis>
         <xyz>1 0 0 </xyz>
+        <dynamics>
+          <damping>20</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>1000</spring_stiffness>
+        </dynamics>
+        <limit>
+          <effort>0</effort>
+        </limit>
       </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
     </joint>
-    <link name="branch_aaaa">
-      <pose relative_to="joint_aaa_aaaa">0 0 0.1875 0 0 0</pose>
-      <visual name="visual">
+    <link name="apple_aaa">
+      <pose relative_to="joint_aaa_apple">0 0 0 0 0 0</pose>
+      <visual name="apple">
+        <pose>0 0 0.04 0 0 0</pose>
         <geometry>
-          <cylinder>
-            <radius>0.016666666666666666</radius>
-            <length>0.375</length>
-          </cylinder>
+          <sphere>
+            <radius>0.03</radius>
+          </sphere>
         </geometry>
         <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
+          <ambient>0.1 0.5 0.2 1</ambient>
+          <diffuse>0.1 0.4 0.2 1</diffuse>
+          <specular>0.2 0.4 0.1 1</specular>
           <emissive>0 0 0 1</emissive>
         </material>
       </visual>
+      <visual name="stalk">
+        <pose>0 0 0.005 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.002</radius>
+            <length>0.01</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <ambient>0.4 0.2 0.1 1</ambient>
+          <diffuse>0.4 0.2 0.1 1</diffuse>
+          <specular>0.2 0.1 0.1 1</specular>
+          <emissive>0 0 0 1</emissive>
+        </material>
+      </visual>
+      <inertial>
+        <pose>0 0 0.04 0 0 0</pose>
+        <mass>0.1</mass>
+        <inertia>
+          <ixx>0.0005</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.0005</iyy>
+          <iyz>0</iyz>
+          <izz>0.0005</izz>
+        </inertia>
+      </inertial>
+      <collision name="collision">
+        <pose>0 0 0.04 0 0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>0.03</radius>
+          </sphere>
+        </geometry>
+      </collision>
     </link>
-    <joint name="joint_aaa_aaaa" type="universal">
-      <pose relative_to="branch_aaa">0 0 0.1875 -0.0310832530461827 -0.10890922171349049 0</pose>
+    <joint name="joint_aaa_apple" type="universal">
+      <pose relative_to="branch_aaa">0.0125 0 0.0014165787289441014 0 1.5707963267948966 0</pose>
       <parent>branch_aaa</parent>
-      <child>branch_aaaa</child>
+      <child>apple_aaa</child>
       <axis>
-        <xyz>1 0 0 </xyz>
+        <xyz>0 1 0 </xyz>
+        <dynamics>
+          <damping>0.001</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0.2</spring_stiffness>
+        </dynamics>
+        <limit>
+          <effort>0</effort>
+        </limit>
       </axis>
       <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_aaaaa">
-      <pose relative_to="joint_aaaa_aaaaa">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_aaaa_aaaaa" type="universal">
-      <pose relative_to="branch_aaaa">0 0 0.15000000000000002 0.5015549156204355 0.6426782508038293 0</pose>
-      <parent>branch_aaaa</parent>
-      <child>branch_aaaaa</child>
-      <axis>
         <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_aaaab">
-      <pose relative_to="joint_aaaa_aaaab">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_aaaa_aaaab" type="universal">
-      <pose relative_to="branch_aaaa">0 0 0.15000000000000002 -0.4607583800012748 0.05694586339252916 0</pose>
-      <parent>branch_aaaa</parent>
-      <child>branch_aaaab</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_aaaac">
-      <pose relative_to="joint_aaaa_aaaac">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_aaaa_aaaac" type="universal">
-      <pose relative_to="branch_aaaa">0 0 0.15000000000000002 0.27292492290603854 0.17177415292447035 0</pose>
-      <parent>branch_aaaa</parent>
-      <child>branch_aaaac</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_aaab">
-      <pose relative_to="joint_aaa_aaab">0 0 0.1875 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.016666666666666666</radius>
-            <length>0.375</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_aaa_aaab" type="universal">
-      <pose relative_to="branch_aaa">0 0 0.1875 0.046811817902786546 0.5808016052735641 0</pose>
-      <parent>branch_aaa</parent>
-      <child>branch_aaab</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_aaaba">
-      <pose relative_to="joint_aaab_aaaba">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_aaab_aaaba" type="universal">
-      <pose relative_to="branch_aaab">0 0 0.15000000000000002 0.39317874070348513 0.5296601718111933 0</pose>
-      <parent>branch_aaab</parent>
-      <child>branch_aaaba</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_aaabb">
-      <pose relative_to="joint_aaab_aaabb">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_aaab_aaabb" type="universal">
-      <pose relative_to="branch_aaab">0 0 0.15000000000000002 0.020591077300248173 0.7285274073140895 0</pose>
-      <parent>branch_aaab</parent>
-      <child>branch_aaabb</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_aaabc">
-      <pose relative_to="joint_aaab_aaabc">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_aaab_aaabc" type="universal">
-      <pose relative_to="branch_aaab">0 0 0.15000000000000002 -0.11089581361308332 0.5266827827260951 0</pose>
-      <parent>branch_aaab</parent>
-      <child>branch_aaabc</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_aaac">
-      <pose relative_to="joint_aaa_aaac">0 0 0.1875 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.016666666666666666</radius>
-            <length>0.375</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_aaa_aaac" type="universal">
-      <pose relative_to="branch_aaa">0 0 0.1875 -0.6316937887393228 -0.38156267795417975 0</pose>
-      <parent>branch_aaa</parent>
-      <child>branch_aaac</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_aaaca">
-      <pose relative_to="joint_aaac_aaaca">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_aaac_aaaca" type="universal">
-      <pose relative_to="branch_aaac">0 0 0.15000000000000002 0.424705243913052 -0.1523602850039757 0</pose>
-      <parent>branch_aaac</parent>
-      <child>branch_aaaca</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_aaacb">
-      <pose relative_to="joint_aaac_aaacb">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_aaac_aaacb" type="universal">
-      <pose relative_to="branch_aaac">0 0 0.15000000000000002 0.6852784218747079 0.22896239169178478 0</pose>
-      <parent>branch_aaac</parent>
-      <child>branch_aaacb</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_aaacc">
-      <pose relative_to="joint_aaac_aaacc">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_aaac_aaacc" type="universal">
-      <pose relative_to="branch_aaac">0 0 0.15000000000000002 -0.5978291262094177 -0.7292347685803348 0</pose>
-      <parent>branch_aaac</parent>
-      <child>branch_aaacc</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
+        <dynamics>
+          <damping>0.001</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0.2</spring_stiffness>
+        </dynamics>
+        <limit>
+          <effort>0</effort>
+        </limit>
       </axis2>
     </joint>
     <link name="branch_aab">
-      <pose relative_to="joint_aa_aab">0 0 0.25 0 0 0</pose>
+      <pose relative_to="joint_aa_aab">0 0 0.15000000000000002 0 0 0</pose>
       <visual name="visual">
         <geometry>
           <cylinder>
-            <radius>0.025</radius>
-            <length>0.5</length>
+            <radius>0.0125</radius>
+            <length>0.30000000000000004</length>
           </cylinder>
         </geometry>
         <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
+          <ambient>0.3 0.15 0.15 1</ambient>
+          <diffuse>0.3 0.15 0.15 1</diffuse>
+          <specular>0.0 0.0 0.0 1</specular>
           <emissive>0 0 0 1</emissive>
         </material>
       </visual>
+      <collision name="collision">
+        <geometry>
+          <cylinder>
+            <radius>0.0125</radius>
+            <length>0.18000000000000002</length>
+          </cylinder>
+        </geometry>
+      </collision>
     </link>
-    <joint name="joint_aa_aab" type="universal">
-      <pose relative_to="branch_aa">0 0 0.25 -0.3943251013139248 -0.248200495281019 0</pose>
+    <joint name="joint_aa_aab" type="revolute">
+      <pose relative_to="branch_aa">0 0 0.15000000000000002 0.5527550517278128 -0.32842975361594434 0</pose>
       <parent>branch_aa</parent>
       <child>branch_aab</child>
       <axis>
         <xyz>1 0 0 </xyz>
+        <dynamics>
+          <damping>20</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>1000</spring_stiffness>
+        </dynamics>
+        <limit>
+          <effort>0</effort>
+        </limit>
       </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
     </joint>
-    <link name="branch_aaba">
-      <pose relative_to="joint_aab_aaba">0 0 0.1875 0 0 0</pose>
-      <visual name="visual">
+    <link name="apple_aab">
+      <pose relative_to="joint_aab_apple">0 0 0 0 0 0</pose>
+      <visual name="apple">
+        <pose>0 0 0.04 0 0 0</pose>
         <geometry>
-          <cylinder>
-            <radius>0.016666666666666666</radius>
-            <length>0.375</length>
-          </cylinder>
+          <sphere>
+            <radius>0.03</radius>
+          </sphere>
         </geometry>
         <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
+          <ambient>0.1 0.5 0.2 1</ambient>
+          <diffuse>0.1 0.4 0.2 1</diffuse>
+          <specular>0.2 0.4 0.1 1</specular>
           <emissive>0 0 0 1</emissive>
         </material>
       </visual>
+      <visual name="stalk">
+        <pose>0 0 0.005 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.002</radius>
+            <length>0.01</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <ambient>0.4 0.2 0.1 1</ambient>
+          <diffuse>0.4 0.2 0.1 1</diffuse>
+          <specular>0.2 0.1 0.1 1</specular>
+          <emissive>0 0 0 1</emissive>
+        </material>
+      </visual>
+      <inertial>
+        <pose>0 0 0.04 0 0 0</pose>
+        <mass>0.1</mass>
+        <inertia>
+          <ixx>0.0005</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.0005</iyy>
+          <iyz>0</iyz>
+          <izz>0.0005</izz>
+        </inertia>
+      </inertial>
+      <collision name="collision">
+        <pose>0 0 0.04 0 0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>0.03</radius>
+          </sphere>
+        </geometry>
+      </collision>
     </link>
-    <joint name="joint_aab_aaba" type="universal">
-      <pose relative_to="branch_aab">0 0 0.1875 0.4329631921614545 -0.673544477773339 0</pose>
+    <joint name="joint_aab_apple" type="universal">
+      <pose relative_to="branch_aab">0.0125 0 0.02094877454291482 0 1.5707963267948966 0</pose>
       <parent>branch_aab</parent>
-      <child>branch_aaba</child>
+      <child>apple_aab</child>
       <axis>
-        <xyz>1 0 0 </xyz>
+        <xyz>0 1 0 </xyz>
+        <dynamics>
+          <damping>0.001</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0.2</spring_stiffness>
+        </dynamics>
+        <limit>
+          <effort>0</effort>
+        </limit>
       </axis>
       <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_aabaa">
-      <pose relative_to="joint_aaba_aabaa">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_aaba_aabaa" type="universal">
-      <pose relative_to="branch_aaba">0 0 0.15000000000000002 0.7311181143020514 0.6305519361624634 0</pose>
-      <parent>branch_aaba</parent>
-      <child>branch_aabaa</child>
-      <axis>
         <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_aabab">
-      <pose relative_to="joint_aaba_aabab">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_aaba_aabab" type="universal">
-      <pose relative_to="branch_aaba">0 0 0.15000000000000002 0.3464460442675912 0.4634646859319861 0</pose>
-      <parent>branch_aaba</parent>
-      <child>branch_aabab</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_aabac">
-      <pose relative_to="joint_aaba_aabac">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_aaba_aabac" type="universal">
-      <pose relative_to="branch_aaba">0 0 0.15000000000000002 -0.0005392627710098519 0.03401861928580374 0</pose>
-      <parent>branch_aaba</parent>
-      <child>branch_aabac</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_aabb">
-      <pose relative_to="joint_aab_aabb">0 0 0.1875 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.016666666666666666</radius>
-            <length>0.375</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_aab_aabb" type="universal">
-      <pose relative_to="branch_aab">0 0 0.1875 -0.34071989082496623 0.20295715167229283 0</pose>
-      <parent>branch_aab</parent>
-      <child>branch_aabb</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_aabba">
-      <pose relative_to="joint_aabb_aabba">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_aabb_aabba" type="universal">
-      <pose relative_to="branch_aabb">0 0 0.15000000000000002 -0.4438387690951208 -0.09084189449480196 0</pose>
-      <parent>branch_aabb</parent>
-      <child>branch_aabba</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_aabbb">
-      <pose relative_to="joint_aabb_aabbb">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_aabb_aabbb" type="universal">
-      <pose relative_to="branch_aabb">0 0 0.15000000000000002 0.24018219234347415 0.65703911299323 0</pose>
-      <parent>branch_aabb</parent>
-      <child>branch_aabbb</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_aabbc">
-      <pose relative_to="joint_aabb_aabbc">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_aabb_aabbc" type="universal">
-      <pose relative_to="branch_aabb">0 0 0.15000000000000002 0.6342348435405403 0.41854789384668395 0</pose>
-      <parent>branch_aabb</parent>
-      <child>branch_aabbc</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_aabc">
-      <pose relative_to="joint_aab_aabc">0 0 0.1875 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.016666666666666666</radius>
-            <length>0.375</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_aab_aabc" type="universal">
-      <pose relative_to="branch_aab">0 0 0.1875 0.5304567263474879 -0.42351476786791536 0</pose>
-      <parent>branch_aab</parent>
-      <child>branch_aabc</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_aabca">
-      <pose relative_to="joint_aabc_aabca">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_aabc_aabca" type="universal">
-      <pose relative_to="branch_aabc">0 0 0.15000000000000002 -0.5475089681338332 0.1247648036496895 0</pose>
-      <parent>branch_aabc</parent>
-      <child>branch_aabca</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_aabcb">
-      <pose relative_to="joint_aabc_aabcb">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_aabc_aabcb" type="universal">
-      <pose relative_to="branch_aabc">0 0 0.15000000000000002 0.23754690722214516 -0.11879911118136705 0</pose>
-      <parent>branch_aabc</parent>
-      <child>branch_aabcb</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_aabcc">
-      <pose relative_to="joint_aabc_aabcc">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_aabc_aabcc" type="universal">
-      <pose relative_to="branch_aabc">0 0 0.15000000000000002 -0.7300230782649313 0.26958313679598295 0</pose>
-      <parent>branch_aabc</parent>
-      <child>branch_aabcc</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
+        <dynamics>
+          <damping>0.001</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0.2</spring_stiffness>
+        </dynamics>
+        <limit>
+          <effort>0</effort>
+        </limit>
       </axis2>
     </joint>
     <link name="branch_aac">
-      <pose relative_to="joint_aa_aac">0 0 0.25 0 0 0</pose>
+      <pose relative_to="joint_aa_aac">0 0 0.15000000000000002 0 0 0</pose>
       <visual name="visual">
         <geometry>
           <cylinder>
-            <radius>0.025</radius>
-            <length>0.5</length>
+            <radius>0.0125</radius>
+            <length>0.30000000000000004</length>
           </cylinder>
         </geometry>
         <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
+          <ambient>0.3 0.15 0.15 1</ambient>
+          <diffuse>0.3 0.15 0.15 1</diffuse>
+          <specular>0.0 0.0 0.0 1</specular>
           <emissive>0 0 0 1</emissive>
         </material>
       </visual>
+      <collision name="collision">
+        <geometry>
+          <cylinder>
+            <radius>0.0125</radius>
+            <length>0.18000000000000002</length>
+          </cylinder>
+        </geometry>
+      </collision>
     </link>
-    <joint name="joint_aa_aac" type="universal">
-      <pose relative_to="branch_aa">0 0 0.25 -0.7477858730577198 0.5675974652453957 0</pose>
+    <joint name="joint_aa_aac" type="revolute">
+      <pose relative_to="branch_aa">0 0 0.15000000000000002 -0.34027682946392435 -0.027852996607815317 0</pose>
       <parent>branch_aa</parent>
       <child>branch_aac</child>
       <axis>
         <xyz>1 0 0 </xyz>
+        <dynamics>
+          <damping>20</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>1000</spring_stiffness>
+        </dynamics>
+        <limit>
+          <effort>0</effort>
+        </limit>
       </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
     </joint>
-    <link name="branch_aaca">
-      <pose relative_to="joint_aac_aaca">0 0 0.1875 0 0 0</pose>
-      <visual name="visual">
+    <link name="apple_aac">
+      <pose relative_to="joint_aac_apple">0 0 0 0 0 0</pose>
+      <visual name="apple">
+        <pose>0 0 0.04 0 0 0</pose>
         <geometry>
-          <cylinder>
-            <radius>0.016666666666666666</radius>
-            <length>0.375</length>
-          </cylinder>
+          <sphere>
+            <radius>0.03</radius>
+          </sphere>
         </geometry>
         <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
+          <ambient>0.1 0.5 0.2 1</ambient>
+          <diffuse>0.1 0.4 0.2 1</diffuse>
+          <specular>0.2 0.4 0.1 1</specular>
           <emissive>0 0 0 1</emissive>
         </material>
       </visual>
+      <visual name="stalk">
+        <pose>0 0 0.005 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.002</radius>
+            <length>0.01</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <ambient>0.4 0.2 0.1 1</ambient>
+          <diffuse>0.4 0.2 0.1 1</diffuse>
+          <specular>0.2 0.1 0.1 1</specular>
+          <emissive>0 0 0 1</emissive>
+        </material>
+      </visual>
+      <inertial>
+        <pose>0 0 0.04 0 0 0</pose>
+        <mass>0.1</mass>
+        <inertia>
+          <ixx>0.0005</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.0005</iyy>
+          <iyz>0</iyz>
+          <izz>0.0005</izz>
+        </inertia>
+      </inertial>
+      <collision name="collision">
+        <pose>0 0 0.04 0 0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>0.03</radius>
+          </sphere>
+        </geometry>
+      </collision>
     </link>
-    <joint name="joint_aac_aaca" type="universal">
-      <pose relative_to="branch_aac">0 0 0.1875 0.2854406206125202 -0.5684046889357713 0</pose>
+    <joint name="joint_aac_apple" type="universal">
+      <pose relative_to="branch_aac">0.0125 0 -0.029427986124209014 0 1.5707963267948966 0</pose>
       <parent>branch_aac</parent>
-      <child>branch_aaca</child>
+      <child>apple_aac</child>
       <axis>
-        <xyz>1 0 0 </xyz>
+        <xyz>0 1 0 </xyz>
+        <dynamics>
+          <damping>0.001</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0.2</spring_stiffness>
+        </dynamics>
+        <limit>
+          <effort>0</effort>
+        </limit>
       </axis>
       <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_aacaa">
-      <pose relative_to="joint_aaca_aacaa">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_aaca_aacaa" type="universal">
-      <pose relative_to="branch_aaca">0 0 0.15000000000000002 0.2697086212009824 -0.15541424349284738 0</pose>
-      <parent>branch_aaca</parent>
-      <child>branch_aacaa</child>
-      <axis>
         <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_aacab">
-      <pose relative_to="joint_aaca_aacab">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_aaca_aacab" type="universal">
-      <pose relative_to="branch_aaca">0 0 0.15000000000000002 0.20453657468910313 0.0978187841244586 0</pose>
-      <parent>branch_aaca</parent>
-      <child>branch_aacab</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_aacac">
-      <pose relative_to="joint_aaca_aacac">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_aaca_aacac" type="universal">
-      <pose relative_to="branch_aaca">0 0 0.15000000000000002 0.04921448208917695 -0.20345904568112788 0</pose>
-      <parent>branch_aaca</parent>
-      <child>branch_aacac</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_aacb">
-      <pose relative_to="joint_aac_aacb">0 0 0.1875 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.016666666666666666</radius>
-            <length>0.375</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_aac_aacb" type="universal">
-      <pose relative_to="branch_aac">0 0 0.1875 0.4306191613780573 -0.2120225703108506 0</pose>
-      <parent>branch_aac</parent>
-      <child>branch_aacb</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_aacba">
-      <pose relative_to="joint_aacb_aacba">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_aacb_aacba" type="universal">
-      <pose relative_to="branch_aacb">0 0 0.15000000000000002 -0.20210866911446485 -0.3196958117827779 0</pose>
-      <parent>branch_aacb</parent>
-      <child>branch_aacba</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_aacbb">
-      <pose relative_to="joint_aacb_aacbb">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_aacb_aacbb" type="universal">
-      <pose relative_to="branch_aacb">0 0 0.15000000000000002 -0.5381111405803938 -0.6833337192053329 0</pose>
-      <parent>branch_aacb</parent>
-      <child>branch_aacbb</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_aacbc">
-      <pose relative_to="joint_aacb_aacbc">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_aacb_aacbc" type="universal">
-      <pose relative_to="branch_aacb">0 0 0.15000000000000002 -0.3254362920887545 -0.7442654448345267 0</pose>
-      <parent>branch_aacb</parent>
-      <child>branch_aacbc</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_aacc">
-      <pose relative_to="joint_aac_aacc">0 0 0.1875 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.016666666666666666</radius>
-            <length>0.375</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_aac_aacc" type="universal">
-      <pose relative_to="branch_aac">0 0 0.1875 -0.5926993195388299 0.46318820789972037 0</pose>
-      <parent>branch_aac</parent>
-      <child>branch_aacc</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_aacca">
-      <pose relative_to="joint_aacc_aacca">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_aacc_aacca" type="universal">
-      <pose relative_to="branch_aacc">0 0 0.15000000000000002 0.044316969882366275 -0.14586213827497757 0</pose>
-      <parent>branch_aacc</parent>
-      <child>branch_aacca</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_aaccb">
-      <pose relative_to="joint_aacc_aaccb">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_aacc_aaccb" type="universal">
-      <pose relative_to="branch_aacc">0 0 0.15000000000000002 -0.3222766106124171 0.4247619237475958 0</pose>
-      <parent>branch_aacc</parent>
-      <child>branch_aaccb</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_aaccc">
-      <pose relative_to="joint_aacc_aaccc">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_aacc_aaccc" type="universal">
-      <pose relative_to="branch_aacc">0 0 0.15000000000000002 0.564627147927842 0.7235837544477677 0</pose>
-      <parent>branch_aacc</parent>
-      <child>branch_aaccc</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
+        <dynamics>
+          <damping>0.001</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0.2</spring_stiffness>
+        </dynamics>
+        <limit>
+          <effort>0</effort>
+        </limit>
       </axis2>
     </joint>
     <link name="branch_ab">
-      <pose relative_to="joint_a_ab">0 0 0.375 0 0 0</pose>
+      <pose relative_to="joint_a_ab">0 0 0.1875 0 0 0</pose>
       <visual name="visual">
         <geometry>
           <cylinder>
-            <radius>0.05</radius>
-            <length>0.75</length>
+            <radius>0.016666666666666666</radius>
+            <length>0.375</length>
           </cylinder>
         </geometry>
         <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
+          <ambient>0.3 0.15 0.15 1</ambient>
+          <diffuse>0.3 0.15 0.15 1</diffuse>
+          <specular>0.0 0.0 0.0 1</specular>
           <emissive>0 0 0 1</emissive>
         </material>
       </visual>
+      <collision name="collision">
+        <geometry>
+          <cylinder>
+            <radius>0.016666666666666666</radius>
+            <length>0.22499999999999998</length>
+          </cylinder>
+        </geometry>
+      </collision>
     </link>
-    <joint name="joint_a_ab" type="universal">
-      <pose relative_to="branch_a">0 0 0.375 -0.7226499025756125 0.3157293040131674 0</pose>
+    <joint name="joint_a_ab" type="revolute">
+      <pose relative_to="branch_a">0 0 0.1875 0.14633382379113746 -0.1871662754312874 0</pose>
       <parent>branch_a</parent>
       <child>branch_ab</child>
       <axis>
         <xyz>1 0 0 </xyz>
+        <dynamics>
+          <damping>100</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>5000</spring_stiffness>
+        </dynamics>
+        <limit>
+          <effort>0</effort>
+        </limit>
       </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
     </joint>
-    <link name="branch_aba">
-      <pose relative_to="joint_ab_aba">0 0 0.25 0 0 0</pose>
-      <visual name="visual">
+    <link name="apple_ab">
+      <pose relative_to="joint_ab_apple">0 0 0 0 0 0</pose>
+      <visual name="apple">
+        <pose>0 0 0.04 0 0 0</pose>
         <geometry>
-          <cylinder>
-            <radius>0.025</radius>
-            <length>0.5</length>
-          </cylinder>
+          <sphere>
+            <radius>0.03</radius>
+          </sphere>
         </geometry>
         <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
+          <ambient>0.1 0.5 0.2 1</ambient>
+          <diffuse>0.1 0.4 0.2 1</diffuse>
+          <specular>0.2 0.4 0.1 1</specular>
           <emissive>0 0 0 1</emissive>
         </material>
       </visual>
+      <visual name="stalk">
+        <pose>0 0 0.005 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.002</radius>
+            <length>0.01</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <ambient>0.4 0.2 0.1 1</ambient>
+          <diffuse>0.4 0.2 0.1 1</diffuse>
+          <specular>0.2 0.1 0.1 1</specular>
+          <emissive>0 0 0 1</emissive>
+        </material>
+      </visual>
+      <inertial>
+        <pose>0 0 0.04 0 0 0</pose>
+        <mass>0.1</mass>
+        <inertia>
+          <ixx>0.0005</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.0005</iyy>
+          <iyz>0</iyz>
+          <izz>0.0005</izz>
+        </inertia>
+      </inertial>
+      <collision name="collision">
+        <pose>0 0 0.04 0 0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>0.03</radius>
+          </sphere>
+        </geometry>
+      </collision>
     </link>
-    <joint name="joint_ab_aba" type="universal">
-      <pose relative_to="branch_ab">0 0 0.25 -0.7143616393735754 -0.22876955413113925 0</pose>
+    <joint name="joint_ab_apple" type="universal">
+      <pose relative_to="branch_ab">0.016666666666666666 0 0.03250331709315653 0 1.5707963267948966 0</pose>
+      <parent>branch_ab</parent>
+      <child>apple_ab</child>
+      <axis>
+        <xyz>0 1 0 </xyz>
+        <dynamics>
+          <damping>0.001</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0.2</spring_stiffness>
+        </dynamics>
+        <limit>
+          <effort>0</effort>
+        </limit>
+      </axis>
+      <axis2>
+        <xyz>1 0 0 </xyz>
+        <dynamics>
+          <damping>0.001</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0.2</spring_stiffness>
+        </dynamics>
+        <limit>
+          <effort>0</effort>
+        </limit>
+      </axis2>
+    </joint>
+    <link name="branch_aba">
+      <pose relative_to="joint_ab_aba">0 0 0.15000000000000002 0 0 0</pose>
+      <visual name="visual">
+        <geometry>
+          <cylinder>
+            <radius>0.0125</radius>
+            <length>0.30000000000000004</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <ambient>0.3 0.15 0.15 1</ambient>
+          <diffuse>0.3 0.15 0.15 1</diffuse>
+          <specular>0.0 0.0 0.0 1</specular>
+          <emissive>0 0 0 1</emissive>
+        </material>
+      </visual>
+      <collision name="collision">
+        <geometry>
+          <cylinder>
+            <radius>0.0125</radius>
+            <length>0.18000000000000002</length>
+          </cylinder>
+        </geometry>
+      </collision>
+    </link>
+    <joint name="joint_ab_aba" type="revolute">
+      <pose relative_to="branch_ab">0 0 0.15000000000000002 0.09051149724497409 0.23239033370226064 0</pose>
       <parent>branch_ab</parent>
       <child>branch_aba</child>
       <axis>
         <xyz>1 0 0 </xyz>
+        <dynamics>
+          <damping>20</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>1000</spring_stiffness>
+        </dynamics>
+        <limit>
+          <effort>0</effort>
+        </limit>
       </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
     </joint>
-    <link name="branch_abaa">
-      <pose relative_to="joint_aba_abaa">0 0 0.1875 0 0 0</pose>
-      <visual name="visual">
+    <link name="apple_aba">
+      <pose relative_to="joint_aba_apple">0 0 0 0 0 0</pose>
+      <visual name="apple">
+        <pose>0 0 0.04 0 0 0</pose>
         <geometry>
-          <cylinder>
-            <radius>0.016666666666666666</radius>
-            <length>0.375</length>
-          </cylinder>
+          <sphere>
+            <radius>0.03</radius>
+          </sphere>
         </geometry>
         <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
+          <ambient>0.1 0.5 0.2 1</ambient>
+          <diffuse>0.1 0.4 0.2 1</diffuse>
+          <specular>0.2 0.4 0.1 1</specular>
           <emissive>0 0 0 1</emissive>
         </material>
       </visual>
+      <visual name="stalk">
+        <pose>0 0 0.005 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.002</radius>
+            <length>0.01</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <ambient>0.4 0.2 0.1 1</ambient>
+          <diffuse>0.4 0.2 0.1 1</diffuse>
+          <specular>0.2 0.1 0.1 1</specular>
+          <emissive>0 0 0 1</emissive>
+        </material>
+      </visual>
+      <inertial>
+        <pose>0 0 0.04 0 0 0</pose>
+        <mass>0.1</mass>
+        <inertia>
+          <ixx>0.0005</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.0005</iyy>
+          <iyz>0</iyz>
+          <izz>0.0005</izz>
+        </inertia>
+      </inertial>
+      <collision name="collision">
+        <pose>0 0 0.04 0 0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>0.03</radius>
+          </sphere>
+        </geometry>
+      </collision>
     </link>
-    <joint name="joint_aba_abaa" type="universal">
-      <pose relative_to="branch_aba">0 0 0.1875 -0.08397579237559671 0.37148925990967746 0</pose>
+    <joint name="joint_aba_apple" type="universal">
+      <pose relative_to="branch_aba">0.0125 0 0.0317532702941579 0 1.5707963267948966 0</pose>
       <parent>branch_aba</parent>
-      <child>branch_abaa</child>
+      <child>apple_aba</child>
       <axis>
-        <xyz>1 0 0 </xyz>
+        <xyz>0 1 0 </xyz>
+        <dynamics>
+          <damping>0.001</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0.2</spring_stiffness>
+        </dynamics>
+        <limit>
+          <effort>0</effort>
+        </limit>
       </axis>
       <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_abaaa">
-      <pose relative_to="joint_abaa_abaaa">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_abaa_abaaa" type="universal">
-      <pose relative_to="branch_abaa">0 0 0.15000000000000002 -0.13862899930380618 0.6368481615610382 0</pose>
-      <parent>branch_abaa</parent>
-      <child>branch_abaaa</child>
-      <axis>
         <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_abaab">
-      <pose relative_to="joint_abaa_abaab">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_abaa_abaab" type="universal">
-      <pose relative_to="branch_abaa">0 0 0.15000000000000002 -0.1777048470862831 -0.2706956744303422 0</pose>
-      <parent>branch_abaa</parent>
-      <child>branch_abaab</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_abaac">
-      <pose relative_to="joint_abaa_abaac">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_abaa_abaac" type="universal">
-      <pose relative_to="branch_abaa">0 0 0.15000000000000002 0.45040587944443716 -0.030524280537434945 0</pose>
-      <parent>branch_abaa</parent>
-      <child>branch_abaac</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_abab">
-      <pose relative_to="joint_aba_abab">0 0 0.1875 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.016666666666666666</radius>
-            <length>0.375</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_aba_abab" type="universal">
-      <pose relative_to="branch_aba">0 0 0.1875 0.18934034826701313 0.6065060971612624 0</pose>
-      <parent>branch_aba</parent>
-      <child>branch_abab</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_ababa">
-      <pose relative_to="joint_abab_ababa">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_abab_ababa" type="universal">
-      <pose relative_to="branch_abab">0 0 0.15000000000000002 0.7052301035868959 0.6219948541701183 0</pose>
-      <parent>branch_abab</parent>
-      <child>branch_ababa</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_ababb">
-      <pose relative_to="joint_abab_ababb">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_abab_ababb" type="universal">
-      <pose relative_to="branch_abab">0 0 0.15000000000000002 0.5983608448918158 -0.02183818886597394 0</pose>
-      <parent>branch_abab</parent>
-      <child>branch_ababb</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_ababc">
-      <pose relative_to="joint_abab_ababc">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_abab_ababc" type="universal">
-      <pose relative_to="branch_abab">0 0 0.15000000000000002 -0.40533448926963256 0.007530401014718802 0</pose>
-      <parent>branch_abab</parent>
-      <child>branch_ababc</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_abac">
-      <pose relative_to="joint_aba_abac">0 0 0.1875 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.016666666666666666</radius>
-            <length>0.375</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_aba_abac" type="universal">
-      <pose relative_to="branch_aba">0 0 0.1875 -0.37763152132589517 0.36509557909313217 0</pose>
-      <parent>branch_aba</parent>
-      <child>branch_abac</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_abaca">
-      <pose relative_to="joint_abac_abaca">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_abac_abaca" type="universal">
-      <pose relative_to="branch_abac">0 0 0.15000000000000002 0.5519129027812489 -0.2521527146648914 0</pose>
-      <parent>branch_abac</parent>
-      <child>branch_abaca</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_abacb">
-      <pose relative_to="joint_abac_abacb">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_abac_abacb" type="universal">
-      <pose relative_to="branch_abac">0 0 0.15000000000000002 -0.5489309555579496 -0.21959210306526833 0</pose>
-      <parent>branch_abac</parent>
-      <child>branch_abacb</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_abacc">
-      <pose relative_to="joint_abac_abacc">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_abac_abacc" type="universal">
-      <pose relative_to="branch_abac">0 0 0.15000000000000002 0.0497617098657977 -0.6679590064475668 0</pose>
-      <parent>branch_abac</parent>
-      <child>branch_abacc</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
+        <dynamics>
+          <damping>0.001</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0.2</spring_stiffness>
+        </dynamics>
+        <limit>
+          <effort>0</effort>
+        </limit>
       </axis2>
     </joint>
     <link name="branch_abb">
-      <pose relative_to="joint_ab_abb">0 0 0.25 0 0 0</pose>
+      <pose relative_to="joint_ab_abb">0 0 0.15000000000000002 0 0 0</pose>
       <visual name="visual">
         <geometry>
           <cylinder>
-            <radius>0.025</radius>
-            <length>0.5</length>
+            <radius>0.0125</radius>
+            <length>0.30000000000000004</length>
           </cylinder>
         </geometry>
         <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
+          <ambient>0.3 0.15 0.15 1</ambient>
+          <diffuse>0.3 0.15 0.15 1</diffuse>
+          <specular>0.0 0.0 0.0 1</specular>
           <emissive>0 0 0 1</emissive>
         </material>
       </visual>
+      <collision name="collision">
+        <geometry>
+          <cylinder>
+            <radius>0.0125</radius>
+            <length>0.18000000000000002</length>
+          </cylinder>
+        </geometry>
+      </collision>
     </link>
-    <joint name="joint_ab_abb" type="universal">
-      <pose relative_to="branch_ab">0 0 0.25 -0.3582012073349016 -0.014113660244277515 0</pose>
+    <joint name="joint_ab_abb" type="revolute">
+      <pose relative_to="branch_ab">0 0 0.15000000000000002 0.4030780283075468 -0.24377228813874208 0</pose>
       <parent>branch_ab</parent>
       <child>branch_abb</child>
       <axis>
         <xyz>1 0 0 </xyz>
+        <dynamics>
+          <damping>20</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>1000</spring_stiffness>
+        </dynamics>
+        <limit>
+          <effort>0</effort>
+        </limit>
       </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
     </joint>
-    <link name="branch_abba">
-      <pose relative_to="joint_abb_abba">0 0 0.1875 0 0 0</pose>
-      <visual name="visual">
+    <link name="apple_abb">
+      <pose relative_to="joint_abb_apple">0 0 0 0 0 0</pose>
+      <visual name="apple">
+        <pose>0 0 0.04 0 0 0</pose>
         <geometry>
-          <cylinder>
-            <radius>0.016666666666666666</radius>
-            <length>0.375</length>
-          </cylinder>
+          <sphere>
+            <radius>0.03</radius>
+          </sphere>
         </geometry>
         <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
+          <ambient>0.1 0.5 0.2 1</ambient>
+          <diffuse>0.1 0.4 0.2 1</diffuse>
+          <specular>0.2 0.4 0.1 1</specular>
           <emissive>0 0 0 1</emissive>
         </material>
       </visual>
+      <visual name="stalk">
+        <pose>0 0 0.005 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.002</radius>
+            <length>0.01</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <ambient>0.4 0.2 0.1 1</ambient>
+          <diffuse>0.4 0.2 0.1 1</diffuse>
+          <specular>0.2 0.1 0.1 1</specular>
+          <emissive>0 0 0 1</emissive>
+        </material>
+      </visual>
+      <inertial>
+        <pose>0 0 0.04 0 0 0</pose>
+        <mass>0.1</mass>
+        <inertia>
+          <ixx>0.0005</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.0005</iyy>
+          <iyz>0</iyz>
+          <izz>0.0005</izz>
+        </inertia>
+      </inertial>
+      <collision name="collision">
+        <pose>0 0 0.04 0 0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>0.03</radius>
+          </sphere>
+        </geometry>
+      </collision>
     </link>
-    <joint name="joint_abb_abba" type="universal">
-      <pose relative_to="branch_abb">0 0 0.1875 0.6631666440050304 -0.697157787825094 0</pose>
+    <joint name="joint_abb_apple" type="universal">
+      <pose relative_to="branch_abb">0.0125 0 0.06834990628128519 0 1.5707963267948966 0</pose>
       <parent>branch_abb</parent>
-      <child>branch_abba</child>
+      <child>apple_abb</child>
       <axis>
-        <xyz>1 0 0 </xyz>
+        <xyz>0 1 0 </xyz>
+        <dynamics>
+          <damping>0.001</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0.2</spring_stiffness>
+        </dynamics>
+        <limit>
+          <effort>0</effort>
+        </limit>
       </axis>
       <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_abbaa">
-      <pose relative_to="joint_abba_abbaa">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_abba_abbaa" type="universal">
-      <pose relative_to="branch_abba">0 0 0.15000000000000002 -0.44059769156577516 -0.6612014008255072 0</pose>
-      <parent>branch_abba</parent>
-      <child>branch_abbaa</child>
-      <axis>
         <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_abbab">
-      <pose relative_to="joint_abba_abbab">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_abba_abbab" type="universal">
-      <pose relative_to="branch_abba">0 0 0.15000000000000002 0.11649437844134591 -0.6778415992683924 0</pose>
-      <parent>branch_abba</parent>
-      <child>branch_abbab</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_abbac">
-      <pose relative_to="joint_abba_abbac">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_abba_abbac" type="universal">
-      <pose relative_to="branch_abba">0 0 0.15000000000000002 -0.3119980434729334 -0.4356265472248654 0</pose>
-      <parent>branch_abba</parent>
-      <child>branch_abbac</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_abbb">
-      <pose relative_to="joint_abb_abbb">0 0 0.1875 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.016666666666666666</radius>
-            <length>0.375</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_abb_abbb" type="universal">
-      <pose relative_to="branch_abb">0 0 0.1875 -0.054115862434620354 0.6194703719259746 0</pose>
-      <parent>branch_abb</parent>
-      <child>branch_abbb</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_abbba">
-      <pose relative_to="joint_abbb_abbba">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_abbb_abbba" type="universal">
-      <pose relative_to="branch_abbb">0 0 0.15000000000000002 0.11170464456680135 0.5258043126494619 0</pose>
-      <parent>branch_abbb</parent>
-      <child>branch_abbba</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_abbbb">
-      <pose relative_to="joint_abbb_abbbb">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_abbb_abbbb" type="universal">
-      <pose relative_to="branch_abbb">0 0 0.15000000000000002 -0.4972997927676889 -0.7164525940944386 0</pose>
-      <parent>branch_abbb</parent>
-      <child>branch_abbbb</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_abbbc">
-      <pose relative_to="joint_abbb_abbbc">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_abbb_abbbc" type="universal">
-      <pose relative_to="branch_abbb">0 0 0.15000000000000002 -0.21458641948378593 0.31750311122618236 0</pose>
-      <parent>branch_abbb</parent>
-      <child>branch_abbbc</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_abbc">
-      <pose relative_to="joint_abb_abbc">0 0 0.1875 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.016666666666666666</radius>
-            <length>0.375</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_abb_abbc" type="universal">
-      <pose relative_to="branch_abb">0 0 0.1875 -0.08856661676626187 -0.18130090855570352 0</pose>
-      <parent>branch_abb</parent>
-      <child>branch_abbc</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_abbca">
-      <pose relative_to="joint_abbc_abbca">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_abbc_abbca" type="universal">
-      <pose relative_to="branch_abbc">0 0 0.15000000000000002 -0.01669005663026024 -0.411961609967661 0</pose>
-      <parent>branch_abbc</parent>
-      <child>branch_abbca</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_abbcb">
-      <pose relative_to="joint_abbc_abbcb">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_abbc_abbcb" type="universal">
-      <pose relative_to="branch_abbc">0 0 0.15000000000000002 0.6392107051752487 0.06461907960895014 0</pose>
-      <parent>branch_abbc</parent>
-      <child>branch_abbcb</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_abbcc">
-      <pose relative_to="joint_abbc_abbcc">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_abbc_abbcc" type="universal">
-      <pose relative_to="branch_abbc">0 0 0.15000000000000002 0.42896039007236286 -0.5302224642139806 0</pose>
-      <parent>branch_abbc</parent>
-      <child>branch_abbcc</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
+        <dynamics>
+          <damping>0.001</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0.2</spring_stiffness>
+        </dynamics>
+        <limit>
+          <effort>0</effort>
+        </limit>
       </axis2>
     </joint>
     <link name="branch_abc">
-      <pose relative_to="joint_ab_abc">0 0 0.25 0 0 0</pose>
+      <pose relative_to="joint_ab_abc">0 0 0.15000000000000002 0 0 0</pose>
       <visual name="visual">
         <geometry>
           <cylinder>
-            <radius>0.025</radius>
-            <length>0.5</length>
+            <radius>0.0125</radius>
+            <length>0.30000000000000004</length>
           </cylinder>
         </geometry>
         <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
+          <ambient>0.3 0.15 0.15 1</ambient>
+          <diffuse>0.3 0.15 0.15 1</diffuse>
+          <specular>0.0 0.0 0.0 1</specular>
           <emissive>0 0 0 1</emissive>
         </material>
       </visual>
+      <collision name="collision">
+        <geometry>
+          <cylinder>
+            <radius>0.0125</radius>
+            <length>0.18000000000000002</length>
+          </cylinder>
+        </geometry>
+      </collision>
     </link>
-    <joint name="joint_ab_abc" type="universal">
-      <pose relative_to="branch_ab">0 0 0.25 -0.5243355670725796 0.6628741132204027 0</pose>
+    <joint name="joint_ab_abc" type="revolute">
+      <pose relative_to="branch_ab">0 0 0.15000000000000002 0.21411776494064044 0.020931116621197232 0</pose>
       <parent>branch_ab</parent>
       <child>branch_abc</child>
       <axis>
         <xyz>1 0 0 </xyz>
+        <dynamics>
+          <damping>20</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>1000</spring_stiffness>
+        </dynamics>
+        <limit>
+          <effort>0</effort>
+        </limit>
       </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
     </joint>
-    <link name="branch_abca">
-      <pose relative_to="joint_abc_abca">0 0 0.1875 0 0 0</pose>
-      <visual name="visual">
+    <link name="apple_abc">
+      <pose relative_to="joint_abc_apple">0 0 0 0 0 0</pose>
+      <visual name="apple">
+        <pose>0 0 0.04 0 0 0</pose>
         <geometry>
-          <cylinder>
-            <radius>0.016666666666666666</radius>
-            <length>0.375</length>
-          </cylinder>
+          <sphere>
+            <radius>0.03</radius>
+          </sphere>
         </geometry>
         <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
+          <ambient>0.1 0.5 0.2 1</ambient>
+          <diffuse>0.1 0.4 0.2 1</diffuse>
+          <specular>0.2 0.4 0.1 1</specular>
           <emissive>0 0 0 1</emissive>
         </material>
       </visual>
+      <visual name="stalk">
+        <pose>0 0 0.005 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.002</radius>
+            <length>0.01</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <ambient>0.4 0.2 0.1 1</ambient>
+          <diffuse>0.4 0.2 0.1 1</diffuse>
+          <specular>0.2 0.1 0.1 1</specular>
+          <emissive>0 0 0 1</emissive>
+        </material>
+      </visual>
+      <inertial>
+        <pose>0 0 0.04 0 0 0</pose>
+        <mass>0.1</mass>
+        <inertia>
+          <ixx>0.0005</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.0005</iyy>
+          <iyz>0</iyz>
+          <izz>0.0005</izz>
+        </inertia>
+      </inertial>
+      <collision name="collision">
+        <pose>0 0 0.04 0 0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>0.03</radius>
+          </sphere>
+        </geometry>
+      </collision>
     </link>
-    <joint name="joint_abc_abca" type="universal">
-      <pose relative_to="branch_abc">0 0 0.1875 0.23900493435752707 -0.46076280088558924 0</pose>
+    <joint name="joint_abc_apple" type="universal">
+      <pose relative_to="branch_abc">0.0125 0 -0.015838286491035254 0 1.5707963267948966 0</pose>
       <parent>branch_abc</parent>
-      <child>branch_abca</child>
+      <child>apple_abc</child>
       <axis>
-        <xyz>1 0 0 </xyz>
+        <xyz>0 1 0 </xyz>
+        <dynamics>
+          <damping>0.001</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0.2</spring_stiffness>
+        </dynamics>
+        <limit>
+          <effort>0</effort>
+        </limit>
       </axis>
       <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_abcaa">
-      <pose relative_to="joint_abca_abcaa">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_abca_abcaa" type="universal">
-      <pose relative_to="branch_abca">0 0 0.15000000000000002 0.2942447472790885 0.6230130823999623 0</pose>
-      <parent>branch_abca</parent>
-      <child>branch_abcaa</child>
-      <axis>
         <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_abcab">
-      <pose relative_to="joint_abca_abcab">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_abca_abcab" type="universal">
-      <pose relative_to="branch_abca">0 0 0.15000000000000002 0.20363066654154688 0.13852226825662572 0</pose>
-      <parent>branch_abca</parent>
-      <child>branch_abcab</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_abcac">
-      <pose relative_to="joint_abca_abcac">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_abca_abcac" type="universal">
-      <pose relative_to="branch_abca">0 0 0.15000000000000002 0.4016149974932665 -0.07991249992710392 0</pose>
-      <parent>branch_abca</parent>
-      <child>branch_abcac</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_abcb">
-      <pose relative_to="joint_abc_abcb">0 0 0.1875 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.016666666666666666</radius>
-            <length>0.375</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_abc_abcb" type="universal">
-      <pose relative_to="branch_abc">0 0 0.1875 0.5592475784685069 -0.6300837755342313 0</pose>
-      <parent>branch_abc</parent>
-      <child>branch_abcb</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_abcba">
-      <pose relative_to="joint_abcb_abcba">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_abcb_abcba" type="universal">
-      <pose relative_to="branch_abcb">0 0 0.15000000000000002 -0.4630084655632847 0.6645848969372299 0</pose>
-      <parent>branch_abcb</parent>
-      <child>branch_abcba</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_abcbb">
-      <pose relative_to="joint_abcb_abcbb">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_abcb_abcbb" type="universal">
-      <pose relative_to="branch_abcb">0 0 0.15000000000000002 -0.0973959436908795 -0.3509413998914605 0</pose>
-      <parent>branch_abcb</parent>
-      <child>branch_abcbb</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_abcbc">
-      <pose relative_to="joint_abcb_abcbc">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_abcb_abcbc" type="universal">
-      <pose relative_to="branch_abcb">0 0 0.15000000000000002 -0.5977443503919387 -0.46488067657008425 0</pose>
-      <parent>branch_abcb</parent>
-      <child>branch_abcbc</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_abcc">
-      <pose relative_to="joint_abc_abcc">0 0 0.1875 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.016666666666666666</radius>
-            <length>0.375</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_abc_abcc" type="universal">
-      <pose relative_to="branch_abc">0 0 0.1875 -0.5144878883525663 0.09039913579697956 0</pose>
-      <parent>branch_abc</parent>
-      <child>branch_abcc</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_abcca">
-      <pose relative_to="joint_abcc_abcca">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_abcc_abcca" type="universal">
-      <pose relative_to="branch_abcc">0 0 0.15000000000000002 0.2205288106811225 0.26974102437364345 0</pose>
-      <parent>branch_abcc</parent>
-      <child>branch_abcca</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_abccb">
-      <pose relative_to="joint_abcc_abccb">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_abcc_abccb" type="universal">
-      <pose relative_to="branch_abcc">0 0 0.15000000000000002 0.7257305367105222 0.665121513630722 0</pose>
-      <parent>branch_abcc</parent>
-      <child>branch_abccb</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_abccc">
-      <pose relative_to="joint_abcc_abccc">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_abcc_abccc" type="universal">
-      <pose relative_to="branch_abcc">0 0 0.15000000000000002 0.2817410487634393 0.16641158471546125 0</pose>
-      <parent>branch_abcc</parent>
-      <child>branch_abccc</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
+        <dynamics>
+          <damping>0.001</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0.2</spring_stiffness>
+        </dynamics>
+        <limit>
+          <effort>0</effort>
+        </limit>
       </axis2>
     </joint>
     <link name="branch_ac">
-      <pose relative_to="joint_a_ac">0 0 0.375 0 0 0</pose>
+      <pose relative_to="joint_a_ac">0 0 0.1875 0 0 0</pose>
       <visual name="visual">
         <geometry>
           <cylinder>
-            <radius>0.05</radius>
-            <length>0.75</length>
+            <radius>0.016666666666666666</radius>
+            <length>0.375</length>
           </cylinder>
         </geometry>
         <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
+          <ambient>0.3 0.15 0.15 1</ambient>
+          <diffuse>0.3 0.15 0.15 1</diffuse>
+          <specular>0.0 0.0 0.0 1</specular>
           <emissive>0 0 0 1</emissive>
         </material>
       </visual>
+      <collision name="collision">
+        <geometry>
+          <cylinder>
+            <radius>0.016666666666666666</radius>
+            <length>0.22499999999999998</length>
+          </cylinder>
+        </geometry>
+      </collision>
     </link>
-    <joint name="joint_a_ac" type="universal">
-      <pose relative_to="branch_a">0 0 0.375 -0.20702599659269355 -0.0968993421338919 0</pose>
+    <joint name="joint_a_ac" type="revolute">
+      <pose relative_to="branch_a">0 0 0.1875 0.3444847805953981 0.47259824683709406 0</pose>
       <parent>branch_a</parent>
       <child>branch_ac</child>
       <axis>
         <xyz>1 0 0 </xyz>
+        <dynamics>
+          <damping>100</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>5000</spring_stiffness>
+        </dynamics>
+        <limit>
+          <effort>0</effort>
+        </limit>
       </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
     </joint>
-    <link name="branch_aca">
-      <pose relative_to="joint_ac_aca">0 0 0.25 0 0 0</pose>
-      <visual name="visual">
+    <link name="apple_ac">
+      <pose relative_to="joint_ac_apple">0 0 0 0 0 0</pose>
+      <visual name="apple">
+        <pose>0 0 0.04 0 0 0</pose>
         <geometry>
-          <cylinder>
-            <radius>0.025</radius>
-            <length>0.5</length>
-          </cylinder>
+          <sphere>
+            <radius>0.03</radius>
+          </sphere>
         </geometry>
         <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
+          <ambient>0.1 0.5 0.2 1</ambient>
+          <diffuse>0.1 0.4 0.2 1</diffuse>
+          <specular>0.2 0.4 0.1 1</specular>
           <emissive>0 0 0 1</emissive>
         </material>
       </visual>
+      <visual name="stalk">
+        <pose>0 0 0.005 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.002</radius>
+            <length>0.01</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <ambient>0.4 0.2 0.1 1</ambient>
+          <diffuse>0.4 0.2 0.1 1</diffuse>
+          <specular>0.2 0.1 0.1 1</specular>
+          <emissive>0 0 0 1</emissive>
+        </material>
+      </visual>
+      <inertial>
+        <pose>0 0 0.04 0 0 0</pose>
+        <mass>0.1</mass>
+        <inertia>
+          <ixx>0.0005</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.0005</iyy>
+          <iyz>0</iyz>
+          <izz>0.0005</izz>
+        </inertia>
+      </inertial>
+      <collision name="collision">
+        <pose>0 0 0.04 0 0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>0.03</radius>
+          </sphere>
+        </geometry>
+      </collision>
     </link>
-    <joint name="joint_ac_aca" type="universal">
-      <pose relative_to="branch_ac">0 0 0.25 -0.6536618219590313 -0.6276043546894579 0</pose>
+    <joint name="joint_ac_apple" type="universal">
+      <pose relative_to="branch_ac">0.016666666666666666 0 0.03651704791661965 0 1.5707963267948966 0</pose>
+      <parent>branch_ac</parent>
+      <child>apple_ac</child>
+      <axis>
+        <xyz>0 1 0 </xyz>
+        <dynamics>
+          <damping>0.001</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0.2</spring_stiffness>
+        </dynamics>
+        <limit>
+          <effort>0</effort>
+        </limit>
+      </axis>
+      <axis2>
+        <xyz>1 0 0 </xyz>
+        <dynamics>
+          <damping>0.001</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0.2</spring_stiffness>
+        </dynamics>
+        <limit>
+          <effort>0</effort>
+        </limit>
+      </axis2>
+    </joint>
+    <link name="branch_aca">
+      <pose relative_to="joint_ac_aca">0 0 0.15000000000000002 0 0 0</pose>
+      <visual name="visual">
+        <geometry>
+          <cylinder>
+            <radius>0.0125</radius>
+            <length>0.30000000000000004</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <ambient>0.3 0.15 0.15 1</ambient>
+          <diffuse>0.3 0.15 0.15 1</diffuse>
+          <specular>0.0 0.0 0.0 1</specular>
+          <emissive>0 0 0 1</emissive>
+        </material>
+      </visual>
+      <collision name="collision">
+        <geometry>
+          <cylinder>
+            <radius>0.0125</radius>
+            <length>0.18000000000000002</length>
+          </cylinder>
+        </geometry>
+      </collision>
+    </link>
+    <joint name="joint_ac_aca" type="revolute">
+      <pose relative_to="branch_ac">0 0 0.15000000000000002 0.5881741882451541 -0.5217162510951158 0</pose>
       <parent>branch_ac</parent>
       <child>branch_aca</child>
       <axis>
         <xyz>1 0 0 </xyz>
+        <dynamics>
+          <damping>20</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>1000</spring_stiffness>
+        </dynamics>
+        <limit>
+          <effort>0</effort>
+        </limit>
       </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
     </joint>
-    <link name="branch_acaa">
-      <pose relative_to="joint_aca_acaa">0 0 0.1875 0 0 0</pose>
-      <visual name="visual">
+    <link name="apple_aca">
+      <pose relative_to="joint_aca_apple">0 0 0 0 0 0</pose>
+      <visual name="apple">
+        <pose>0 0 0.04 0 0 0</pose>
         <geometry>
-          <cylinder>
-            <radius>0.016666666666666666</radius>
-            <length>0.375</length>
-          </cylinder>
+          <sphere>
+            <radius>0.03</radius>
+          </sphere>
         </geometry>
         <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
+          <ambient>0.1 0.5 0.2 1</ambient>
+          <diffuse>0.1 0.4 0.2 1</diffuse>
+          <specular>0.2 0.4 0.1 1</specular>
           <emissive>0 0 0 1</emissive>
         </material>
       </visual>
+      <visual name="stalk">
+        <pose>0 0 0.005 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.002</radius>
+            <length>0.01</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <ambient>0.4 0.2 0.1 1</ambient>
+          <diffuse>0.4 0.2 0.1 1</diffuse>
+          <specular>0.2 0.1 0.1 1</specular>
+          <emissive>0 0 0 1</emissive>
+        </material>
+      </visual>
+      <inertial>
+        <pose>0 0 0.04 0 0 0</pose>
+        <mass>0.1</mass>
+        <inertia>
+          <ixx>0.0005</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.0005</iyy>
+          <iyz>0</iyz>
+          <izz>0.0005</izz>
+        </inertia>
+      </inertial>
+      <collision name="collision">
+        <pose>0 0 0.04 0 0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>0.03</radius>
+          </sphere>
+        </geometry>
+      </collision>
     </link>
-    <joint name="joint_aca_acaa" type="universal">
-      <pose relative_to="branch_aca">0 0 0.1875 -0.7239463688534644 0.3459352200849755 0</pose>
+    <joint name="joint_aca_apple" type="universal">
+      <pose relative_to="branch_aca">0.0125 0 -0.04316350487978475 0 1.5707963267948966 0</pose>
       <parent>branch_aca</parent>
-      <child>branch_acaa</child>
+      <child>apple_aca</child>
       <axis>
-        <xyz>1 0 0 </xyz>
+        <xyz>0 1 0 </xyz>
+        <dynamics>
+          <damping>0.001</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0.2</spring_stiffness>
+        </dynamics>
+        <limit>
+          <effort>0</effort>
+        </limit>
       </axis>
       <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_acaaa">
-      <pose relative_to="joint_acaa_acaaa">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_acaa_acaaa" type="universal">
-      <pose relative_to="branch_acaa">0 0 0.15000000000000002 -0.4129498482970911 -0.4864719527433447 0</pose>
-      <parent>branch_acaa</parent>
-      <child>branch_acaaa</child>
-      <axis>
         <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_acaab">
-      <pose relative_to="joint_acaa_acaab">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_acaa_acaab" type="universal">
-      <pose relative_to="branch_acaa">0 0 0.15000000000000002 0.4317138417576971 -0.2152270548320826 0</pose>
-      <parent>branch_acaa</parent>
-      <child>branch_acaab</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_acaac">
-      <pose relative_to="joint_acaa_acaac">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_acaa_acaac" type="universal">
-      <pose relative_to="branch_acaa">0 0 0.15000000000000002 0.28311176399993415 -0.5627698788810033 0</pose>
-      <parent>branch_acaa</parent>
-      <child>branch_acaac</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_acab">
-      <pose relative_to="joint_aca_acab">0 0 0.1875 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.016666666666666666</radius>
-            <length>0.375</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_aca_acab" type="universal">
-      <pose relative_to="branch_aca">0 0 0.1875 -0.29392863852498075 0.44481578724008836 0</pose>
-      <parent>branch_aca</parent>
-      <child>branch_acab</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_acaba">
-      <pose relative_to="joint_acab_acaba">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_acab_acaba" type="universal">
-      <pose relative_to="branch_acab">0 0 0.15000000000000002 -0.07966992296332465 -0.09221857530645666 0</pose>
-      <parent>branch_acab</parent>
-      <child>branch_acaba</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_acabb">
-      <pose relative_to="joint_acab_acabb">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_acab_acabb" type="universal">
-      <pose relative_to="branch_acab">0 0 0.15000000000000002 -0.09916961340255281 -0.6783538249384609 0</pose>
-      <parent>branch_acab</parent>
-      <child>branch_acabb</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_acabc">
-      <pose relative_to="joint_acab_acabc">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_acab_acabc" type="universal">
-      <pose relative_to="branch_acab">0 0 0.15000000000000002 -0.23212151395421238 0.01871522464695191 0</pose>
-      <parent>branch_acab</parent>
-      <child>branch_acabc</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_acac">
-      <pose relative_to="joint_aca_acac">0 0 0.1875 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.016666666666666666</radius>
-            <length>0.375</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_aca_acac" type="universal">
-      <pose relative_to="branch_aca">0 0 0.1875 0.4911800350174217 -0.20021848190418934 0</pose>
-      <parent>branch_aca</parent>
-      <child>branch_acac</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_acaca">
-      <pose relative_to="joint_acac_acaca">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_acac_acaca" type="universal">
-      <pose relative_to="branch_acac">0 0 0.15000000000000002 -0.24134115136948525 -0.46730662890529634 0</pose>
-      <parent>branch_acac</parent>
-      <child>branch_acaca</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_acacb">
-      <pose relative_to="joint_acac_acacb">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_acac_acacb" type="universal">
-      <pose relative_to="branch_acac">0 0 0.15000000000000002 -0.26769670174051147 0.11847189928583968 0</pose>
-      <parent>branch_acac</parent>
-      <child>branch_acacb</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_acacc">
-      <pose relative_to="joint_acac_acacc">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_acac_acacc" type="universal">
-      <pose relative_to="branch_acac">0 0 0.15000000000000002 0.31174614689992397 0.5101033555088781 0</pose>
-      <parent>branch_acac</parent>
-      <child>branch_acacc</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
+        <dynamics>
+          <damping>0.001</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0.2</spring_stiffness>
+        </dynamics>
+        <limit>
+          <effort>0</effort>
+        </limit>
       </axis2>
     </joint>
     <link name="branch_acb">
-      <pose relative_to="joint_ac_acb">0 0 0.25 0 0 0</pose>
+      <pose relative_to="joint_ac_acb">0 0 0.15000000000000002 0 0 0</pose>
       <visual name="visual">
         <geometry>
           <cylinder>
-            <radius>0.025</radius>
-            <length>0.5</length>
+            <radius>0.0125</radius>
+            <length>0.30000000000000004</length>
           </cylinder>
         </geometry>
         <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
+          <ambient>0.3 0.15 0.15 1</ambient>
+          <diffuse>0.3 0.15 0.15 1</diffuse>
+          <specular>0.0 0.0 0.0 1</specular>
           <emissive>0 0 0 1</emissive>
         </material>
       </visual>
+      <collision name="collision">
+        <geometry>
+          <cylinder>
+            <radius>0.0125</radius>
+            <length>0.18000000000000002</length>
+          </cylinder>
+        </geometry>
+      </collision>
     </link>
-    <joint name="joint_ac_acb" type="universal">
-      <pose relative_to="branch_ac">0 0 0.25 0.48654176004420185 0.4218777930293188 0</pose>
+    <joint name="joint_ac_acb" type="revolute">
+      <pose relative_to="branch_ac">0 0 0.15000000000000002 -0.36982988514509435 -0.16260397849887592 0</pose>
       <parent>branch_ac</parent>
       <child>branch_acb</child>
       <axis>
         <xyz>1 0 0 </xyz>
+        <dynamics>
+          <damping>20</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>1000</spring_stiffness>
+        </dynamics>
+        <limit>
+          <effort>0</effort>
+        </limit>
       </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
     </joint>
-    <link name="branch_acba">
-      <pose relative_to="joint_acb_acba">0 0 0.1875 0 0 0</pose>
-      <visual name="visual">
+    <link name="apple_acb">
+      <pose relative_to="joint_acb_apple">0 0 0 0 0 0</pose>
+      <visual name="apple">
+        <pose>0 0 0.04 0 0 0</pose>
         <geometry>
-          <cylinder>
-            <radius>0.016666666666666666</radius>
-            <length>0.375</length>
-          </cylinder>
+          <sphere>
+            <radius>0.03</radius>
+          </sphere>
         </geometry>
         <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
+          <ambient>0.1 0.5 0.2 1</ambient>
+          <diffuse>0.1 0.4 0.2 1</diffuse>
+          <specular>0.2 0.4 0.1 1</specular>
           <emissive>0 0 0 1</emissive>
         </material>
       </visual>
+      <visual name="stalk">
+        <pose>0 0 0.005 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.002</radius>
+            <length>0.01</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <ambient>0.4 0.2 0.1 1</ambient>
+          <diffuse>0.4 0.2 0.1 1</diffuse>
+          <specular>0.2 0.1 0.1 1</specular>
+          <emissive>0 0 0 1</emissive>
+        </material>
+      </visual>
+      <inertial>
+        <pose>0 0 0.04 0 0 0</pose>
+        <mass>0.1</mass>
+        <inertia>
+          <ixx>0.0005</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.0005</iyy>
+          <iyz>0</iyz>
+          <izz>0.0005</izz>
+        </inertia>
+      </inertial>
+      <collision name="collision">
+        <pose>0 0 0.04 0 0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>0.03</radius>
+          </sphere>
+        </geometry>
+      </collision>
     </link>
-    <joint name="joint_acb_acba" type="universal">
-      <pose relative_to="branch_acb">0 0 0.1875 -0.5601084324017431 0.7453792315743715 0</pose>
+    <joint name="joint_acb_apple" type="universal">
+      <pose relative_to="branch_acb">0.0125 0 -0.005340455414019075 0 1.5707963267948966 0</pose>
       <parent>branch_acb</parent>
-      <child>branch_acba</child>
+      <child>apple_acb</child>
       <axis>
-        <xyz>1 0 0 </xyz>
+        <xyz>0 1 0 </xyz>
+        <dynamics>
+          <damping>0.001</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0.2</spring_stiffness>
+        </dynamics>
+        <limit>
+          <effort>0</effort>
+        </limit>
       </axis>
       <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_acbaa">
-      <pose relative_to="joint_acba_acbaa">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_acba_acbaa" type="universal">
-      <pose relative_to="branch_acba">0 0 0.15000000000000002 -0.30770983134532026 0.7002335901257584 0</pose>
-      <parent>branch_acba</parent>
-      <child>branch_acbaa</child>
-      <axis>
         <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_acbab">
-      <pose relative_to="joint_acba_acbab">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_acba_acbab" type="universal">
-      <pose relative_to="branch_acba">0 0 0.15000000000000002 0.6882721985757776 0.5187827437954513 0</pose>
-      <parent>branch_acba</parent>
-      <child>branch_acbab</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_acbac">
-      <pose relative_to="joint_acba_acbac">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_acba_acbac" type="universal">
-      <pose relative_to="branch_acba">0 0 0.15000000000000002 0.5204677690167446 -0.16753475868014933 0</pose>
-      <parent>branch_acba</parent>
-      <child>branch_acbac</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_acbb">
-      <pose relative_to="joint_acb_acbb">0 0 0.1875 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.016666666666666666</radius>
-            <length>0.375</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_acb_acbb" type="universal">
-      <pose relative_to="branch_acb">0 0 0.1875 -0.03981870527526982 0.3414175257125789 0</pose>
-      <parent>branch_acb</parent>
-      <child>branch_acbb</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_acbba">
-      <pose relative_to="joint_acbb_acbba">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_acbb_acbba" type="universal">
-      <pose relative_to="branch_acbb">0 0 0.15000000000000002 0.6350671638185994 0.6932131935918078 0</pose>
-      <parent>branch_acbb</parent>
-      <child>branch_acbba</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_acbbb">
-      <pose relative_to="joint_acbb_acbbb">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_acbb_acbbb" type="universal">
-      <pose relative_to="branch_acbb">0 0 0.15000000000000002 0.1197008200239747 -0.3998937343773021 0</pose>
-      <parent>branch_acbb</parent>
-      <child>branch_acbbb</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_acbbc">
-      <pose relative_to="joint_acbb_acbbc">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_acbb_acbbc" type="universal">
-      <pose relative_to="branch_acbb">0 0 0.15000000000000002 -0.1489631122068254 0.28588673817415766 0</pose>
-      <parent>branch_acbb</parent>
-      <child>branch_acbbc</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_acbc">
-      <pose relative_to="joint_acb_acbc">0 0 0.1875 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.016666666666666666</radius>
-            <length>0.375</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_acb_acbc" type="universal">
-      <pose relative_to="branch_acb">0 0 0.1875 0.5828991068475934 0.21542744900714683 0</pose>
-      <parent>branch_acb</parent>
-      <child>branch_acbc</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_acbca">
-      <pose relative_to="joint_acbc_acbca">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_acbc_acbca" type="universal">
-      <pose relative_to="branch_acbc">0 0 0.15000000000000002 -0.21953781744360645 -0.6244741673316518 0</pose>
-      <parent>branch_acbc</parent>
-      <child>branch_acbca</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_acbcb">
-      <pose relative_to="joint_acbc_acbcb">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_acbc_acbcb" type="universal">
-      <pose relative_to="branch_acbc">0 0 0.15000000000000002 0.30526450461795374 0.0627729612189849 0</pose>
-      <parent>branch_acbc</parent>
-      <child>branch_acbcb</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_acbcc">
-      <pose relative_to="joint_acbc_acbcc">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_acbc_acbcc" type="universal">
-      <pose relative_to="branch_acbc">0 0 0.15000000000000002 -0.6642247657557949 -0.4102896314359476 0</pose>
-      <parent>branch_acbc</parent>
-      <child>branch_acbcc</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
+        <dynamics>
+          <damping>0.001</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0.2</spring_stiffness>
+        </dynamics>
+        <limit>
+          <effort>0</effort>
+        </limit>
       </axis2>
     </joint>
     <link name="branch_acc">
-      <pose relative_to="joint_ac_acc">0 0 0.25 0 0 0</pose>
+      <pose relative_to="joint_ac_acc">0 0 0.15000000000000002 0 0 0</pose>
       <visual name="visual">
         <geometry>
           <cylinder>
-            <radius>0.025</radius>
-            <length>0.5</length>
+            <radius>0.0125</radius>
+            <length>0.30000000000000004</length>
           </cylinder>
         </geometry>
         <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
+          <ambient>0.3 0.15 0.15 1</ambient>
+          <diffuse>0.3 0.15 0.15 1</diffuse>
+          <specular>0.0 0.0 0.0 1</specular>
           <emissive>0 0 0 1</emissive>
         </material>
       </visual>
+      <collision name="collision">
+        <geometry>
+          <cylinder>
+            <radius>0.0125</radius>
+            <length>0.18000000000000002</length>
+          </cylinder>
+        </geometry>
+      </collision>
     </link>
-    <joint name="joint_ac_acc" type="universal">
-      <pose relative_to="branch_ac">0 0 0.25 -0.1357887395593801 0.3254589574259686 0</pose>
+    <joint name="joint_ac_acc" type="revolute">
+      <pose relative_to="branch_ac">0 0 0.15000000000000002 0.4983450508855823 0.41902015424294803 0</pose>
       <parent>branch_ac</parent>
       <child>branch_acc</child>
       <axis>
         <xyz>1 0 0 </xyz>
+        <dynamics>
+          <damping>20</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>1000</spring_stiffness>
+        </dynamics>
+        <limit>
+          <effort>0</effort>
+        </limit>
       </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
     </joint>
-    <link name="branch_acca">
-      <pose relative_to="joint_acc_acca">0 0 0.1875 0 0 0</pose>
-      <visual name="visual">
+    <link name="apple_acc">
+      <pose relative_to="joint_acc_apple">0 0 0 0 0 0</pose>
+      <visual name="apple">
+        <pose>0 0 0.04 0 0 0</pose>
         <geometry>
-          <cylinder>
-            <radius>0.016666666666666666</radius>
-            <length>0.375</length>
-          </cylinder>
+          <sphere>
+            <radius>0.03</radius>
+          </sphere>
         </geometry>
         <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
+          <ambient>0.1 0.5 0.2 1</ambient>
+          <diffuse>0.1 0.4 0.2 1</diffuse>
+          <specular>0.2 0.4 0.1 1</specular>
           <emissive>0 0 0 1</emissive>
         </material>
       </visual>
+      <visual name="stalk">
+        <pose>0 0 0.005 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.002</radius>
+            <length>0.01</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <ambient>0.4 0.2 0.1 1</ambient>
+          <diffuse>0.4 0.2 0.1 1</diffuse>
+          <specular>0.2 0.1 0.1 1</specular>
+          <emissive>0 0 0 1</emissive>
+        </material>
+      </visual>
+      <inertial>
+        <pose>0 0 0.04 0 0 0</pose>
+        <mass>0.1</mass>
+        <inertia>
+          <ixx>0.0005</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.0005</iyy>
+          <iyz>0</iyz>
+          <izz>0.0005</izz>
+        </inertia>
+      </inertial>
+      <collision name="collision">
+        <pose>0 0 0.04 0 0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>0.03</radius>
+          </sphere>
+        </geometry>
+      </collision>
     </link>
-    <joint name="joint_acc_acca" type="universal">
-      <pose relative_to="branch_acc">0 0 0.1875 -0.5066032802871158 0.6427280633675971 0</pose>
+    <joint name="joint_acc_apple" type="universal">
+      <pose relative_to="branch_acc">0.0125 0 0.07201079509189133 0 1.5707963267948966 0</pose>
       <parent>branch_acc</parent>
-      <child>branch_acca</child>
+      <child>apple_acc</child>
       <axis>
-        <xyz>1 0 0 </xyz>
+        <xyz>0 1 0 </xyz>
+        <dynamics>
+          <damping>0.001</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0.2</spring_stiffness>
+        </dynamics>
+        <limit>
+          <effort>0</effort>
+        </limit>
       </axis>
       <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_accaa">
-      <pose relative_to="joint_acca_accaa">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_acca_accaa" type="universal">
-      <pose relative_to="branch_acca">0 0 0.15000000000000002 0.043358832606713416 0.23920027901502272 0</pose>
-      <parent>branch_acca</parent>
-      <child>branch_accaa</child>
-      <axis>
         <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_accab">
-      <pose relative_to="joint_acca_accab">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_acca_accab" type="universal">
-      <pose relative_to="branch_acca">0 0 0.15000000000000002 0.7298564947987995 -0.524953653522576 0</pose>
-      <parent>branch_acca</parent>
-      <child>branch_accab</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_accac">
-      <pose relative_to="joint_acca_accac">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_acca_accac" type="universal">
-      <pose relative_to="branch_acca">0 0 0.15000000000000002 0.5151723111419009 -0.4455470567068382 0</pose>
-      <parent>branch_acca</parent>
-      <child>branch_accac</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_accb">
-      <pose relative_to="joint_acc_accb">0 0 0.1875 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.016666666666666666</radius>
-            <length>0.375</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_acc_accb" type="universal">
-      <pose relative_to="branch_acc">0 0 0.1875 -0.06570336810251048 0.03326062277665465 0</pose>
-      <parent>branch_acc</parent>
-      <child>branch_accb</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_accba">
-      <pose relative_to="joint_accb_accba">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_accb_accba" type="universal">
-      <pose relative_to="branch_accb">0 0 0.15000000000000002 0.4929992725911865 0.6586970302943943 0</pose>
-      <parent>branch_accb</parent>
-      <child>branch_accba</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_accbb">
-      <pose relative_to="joint_accb_accbb">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_accb_accbb" type="universal">
-      <pose relative_to="branch_accb">0 0 0.15000000000000002 0.08491086701442446 0.7173354139710124 0</pose>
-      <parent>branch_accb</parent>
-      <child>branch_accbb</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_accbc">
-      <pose relative_to="joint_accb_accbc">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_accb_accbc" type="universal">
-      <pose relative_to="branch_accb">0 0 0.15000000000000002 -0.6543859515731669 0.004072064073677162 0</pose>
-      <parent>branch_accb</parent>
-      <child>branch_accbc</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_accc">
-      <pose relative_to="joint_acc_accc">0 0 0.1875 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.016666666666666666</radius>
-            <length>0.375</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_acc_accc" type="universal">
-      <pose relative_to="branch_acc">0 0 0.1875 -0.20580328094432787 -0.6594142286343809 0</pose>
-      <parent>branch_acc</parent>
-      <child>branch_accc</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_accca">
-      <pose relative_to="joint_accc_accca">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_accc_accca" type="universal">
-      <pose relative_to="branch_accc">0 0 0.15000000000000002 0.1563750073267285 -0.6712447103903278 0</pose>
-      <parent>branch_accc</parent>
-      <child>branch_accca</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_acccb">
-      <pose relative_to="joint_accc_acccb">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_accc_acccb" type="universal">
-      <pose relative_to="branch_accc">0 0 0.15000000000000002 0.30268379042085636 0.26589924215631805 0</pose>
-      <parent>branch_accc</parent>
-      <child>branch_acccb</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
-      </axis2>
-    </joint>
-    <link name="branch_acccc">
-      <pose relative_to="joint_accc_acccc">0 0 0.15000000000000002 0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.0125</radius>
-            <length>0.30000000000000004</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0.6 0.2 0.1 1</ambient>
-          <diffuse>0.6 0.2 0.1 1</diffuse>
-          <specular>0.6 0.2 0.1 1</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-      </visual>
-    </link>
-    <joint name="joint_accc_acccc" type="universal">
-      <pose relative_to="branch_accc">0 0 0.15000000000000002 0.4153949714513028 0.4683134819489313 0</pose>
-      <parent>branch_accc</parent>
-      <child>branch_acccc</child>
-      <axis>
-        <xyz>1 0 0 </xyz>
-      </axis>
-      <axis2>
-        <xyz>0 1 0 </xyz>
+        <dynamics>
+          <damping>0.001</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0.2</spring_stiffness>
+        </dynamics>
+        <limit>
+          <effort>0</effort>
+        </limit>
       </axis2>
     </joint>
   </model>
