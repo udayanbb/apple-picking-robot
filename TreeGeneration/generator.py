@@ -244,7 +244,7 @@ def add_branch(parent_id, branch_id, length, rad, depth):
     model.append(apple_joint)
     return
 
-depth = 2
+depth = 4
 
 def recurse(parent_id, n):
     if n == 0:
