@@ -6,15 +6,25 @@ from pydrake.systems.framework import DiagramBuilder
 from pydrake.all import (
     AddMultibodyPlantSceneGraph,
     CompositeTrajectory,
+    MeshcatVisualizer,
+    MeshcatVisualizerParams,
 	Parser,
     PathParameterizedTrajectory,
     PiecewisePolynomial,
 	RigidTransform,
+    Role,
     RollPitchYaw,
 )
 
 tree_model_name = "tree"
 your_model_filename = "/Users/udayan/Documents/SEAS/6.4212/6.4212Project/TreeGeneration/tree.sdf" # Write the absolute path to your file here
+
+iiwa_x, iiwa_y, iiwa_z = [0.3, -0.5, 0.1]
+iiwa_R, iiwa_P, iiwa_Y = [0, 0, 90]
+q_default = np.array([-0.2, 0.79, 0.32, -1.76, -0.36, 0.64, -0.73])
+
+iiwa_name = "iiwa"
+wsg_name = "wsg"
 
 def visualize_model(meshcat):
     visualizer = ModelVisualizer(meshcat=meshcat)
@@ -41,8 +51,8 @@ directives:
     parent: tree_on_world
     child: {tree_model_name}::branch_a
 - add_model:
-      name: iiwa
-      file: package://drake/manipulation/models/iiwa_description/iiwa7/iiwa7_no_collision.sdf
+      name: { iiwa_name }
+      file: package://drake/manipulation/models/iiwa_description/iiwa7/iiwa7_with_box_collision.sdf
       default_joint_positions:
         iiwa_joint_1: [{ q_default[0] }]
         iiwa_joint_2: [{ q_default[1] }]
@@ -61,7 +71,7 @@ directives:
     parent: iiwa_on_world
     child: iiwa::iiwa_link_0
 - add_model:
-    name: wsg
+    name: { wsg_name }
     file: package://drake/manipulation/models/wsg_50_description/sdf/schunk_wsg_50_with_tip.sdf
     default_joint_positions:
       left_finger_sliding_joint: [-0.02]
@@ -77,6 +87,46 @@ directives:
     child: wsg::body
 """
     return scenario_data
+
+
+def CreateIiwaControllerPlantCollisions(q_default, iiwa_R, iiwa_P, iiwa_Y, iiwa_x, iiwa_y, iiwa_z, meshcat=None):
+
+    scenario_string = make_scenario_data(tree_model_name, iiwa_R, iiwa_P, iiwa_Y, iiwa_x, iiwa_y, iiwa_z, q_default)
+
+    sim_timestep = 1e-3
+    builder = DiagramBuilder()
+    plant, scene_graph = AddMultibodyPlantSceneGraph(builder, time_step=sim_timestep)
+    parser = Parser(plant=plant)
+    parser.AddModelsFromString(scenario_string, "dmd.yaml")
+
+    #plant.mutable_gravity_field().set_gravity_vector([0, 0, 0])
+
+    if meshcat is not None:
+        visualizer = MeshcatVisualizer.AddToBuilder(
+            builder,
+            scene_graph,
+            meshcat,
+            MeshcatVisualizerParams(role=Role.kIllustration),
+        )
+        collision_visualizer = MeshcatVisualizer.AddToBuilder(
+        	builder,
+        	scene_graph,
+        	meshcat,
+        	MeshcatVisualizerParams(
+        	    prefix="collision", role=Role.kProximity, visible_by_default=False
+        	),
+    	)
+    else:
+        visualizer = None
+        collision_visualizer = None
+
+    plant.Finalize()
+    diagram = builder.Build()
+
+    iiwa_idx = plant.GetModelInstanceByName(iiwa_name)
+    plant.SetDefaultPositions(iiwa_idx, q_default)
+
+    return plant, diagram, visualizer, collision_visualizer
 
 def CreateIiwaControllerPlant(q_default, iiwa_R, iiwa_P, iiwa_Y, iiwa_x, iiwa_y, iiwa_z, visualize=False):
     """creates plant that includes only the robot and gripper, used for controllers."""
@@ -105,7 +155,7 @@ def CreateIiwaControllerPlant(q_default, iiwa_R, iiwa_P, iiwa_Y, iiwa_x, iiwa_y,
             RollPitchYaw(np.pi / 2, 0, np.pi / 2), np.array([0, 0, 0.114])
         ),
     )
-    plant_robot.mutable_gravity_field().set_gravity_vector([0, 0, 0])
+    #plant_robot.mutable_gravity_field().set_gravity_vector([0, 0, 0])
 
     if visualize:
         #meshcat.Delete()

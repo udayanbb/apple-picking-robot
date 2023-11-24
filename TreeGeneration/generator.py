@@ -29,6 +29,14 @@ first_branch_string = '''<link name="branch_a">
     	  <emissive>0 0 0 1</emissive>
     	</material>
       </visual>
+      <collision name="collision">
+        <geometry>
+          <cylinder>
+            <radius>0.06</radius>
+            <length>1</length>
+          </cylinder>
+        </geometry>
+      </collision>
     </link>
 '''
 first_branch = ET.fromstring(first_branch_string)
@@ -244,13 +252,14 @@ def add_branch(parent_id, branch_id, length, rad, depth):
     model.append(apple_joint)
     return
 
-depth = 2 
+depth = 2
 
 def recurse(parent_id, n):
     if n == 0:
         return
     # Add 2 kids, and call recurse on each of them
-    children =  ['a', 'b', 'c']
+    #children =  ['a', 'b', 'c']
+    children =  ['a']
     #if n == depth:
         #children = ['a']
     for i in children:
