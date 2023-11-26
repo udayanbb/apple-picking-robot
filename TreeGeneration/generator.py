@@ -47,19 +47,23 @@ stiffnesses = [5000, 1000, 100, 10, 1]
 dampings = [100, 20, 5, 3, 0.1]
 
 
-stiffnesses = [80, 5, 10, 100, 1]
+stiffnesses = [200, 5, 10, 100, 1]
 dampings = [10, 5, 1, 0.1]
 
 
-stiffnesses = [5000, 1000, 100, 10, 1]
-dampings = [100, 20, 5, 3, 0.1]
+#stiffnesses = [5000, 1000, 100, 10, 1]
+#dampings = [100, 20, 5, 3, 0.1]
+
+
+stiffnesses = [2000, 300, 10, 1]
+dampings = [100, 5, 3, 0.1]
 
 def add_branch(parent_id, branch_id, length, rad, depth):
 
     half_len = length/2
 
     branch_string = f'''<link name="branch_{branch_id}">
-	  <pose relative_to="joint_{parent_id}_{branch_id}">0 0 {half_len} 0 0 0</pose>
+	  <pose relative_to="joint2_{parent_id}_couple_{branch_id}">0 0 {half_len} 0 0 0</pose>
       <visual name="visual">
         <geometry>
           <cylinder>
@@ -87,39 +91,29 @@ def add_branch(parent_id, branch_id, length, rad, depth):
     branch = ET.fromstring(branch_string)
     model.append(branch)
 
-    r1 = (random.random() - 0.5) * np.pi * 0.7
-    r2 = (random.random() - 0.5) * np.pi * 0.7
+    r1 = (random.random() - 0.5) * np.pi * 0.5
+    r2 = (random.random() - 0.5) * np.pi * 0.5
+
+    if depth == 0:
+        r1 = -np.pi/5
+        r2 = np.pi/5
+    elif depth == 1:
+        r1 = (random.random() - 0.5) * np.pi * 0.4
+        r2 = (random.random() - 0.5) * np.pi * 0.4
+
     stiffness = stiffnesses[depth]
     damping = dampings[depth]
 
-    joint_string = f'''<joint name="joint_{parent_id}_{branch_id}" type="universal">
-      <pose relative_to="branch_{parent_id}">0 0 {half_len} {r1} {r2} 0</pose>
+    print(f"stiffness: {stiffness} damping: {damping} depth: {depth}")
+
+    branch_z = random.random() * half_len/2 + half_len/2
+
+	# we want a universal joint with stiffness, which Drake doesn't support
+    # so use two revolute joints with a coupling in between
+    joint1_string = f'''<joint name="joint1_{parent_id}_couple_{branch_id}" type="revolute">
+      <pose relative_to="branch_{parent_id}">0 0 {branch_z} {r1} {r2} 0</pose>
       <parent>branch_{parent_id}</parent>
-      <child>branch_{branch_id}</child>
-	  <axis>
-          <xyz>1 0 0 </xyz>
-	      <dynamics>
-              <damping>0</damping>
-              <friction>10000</friction>
-              <spring_reference>1</spring_reference>
-              <spring_stiffness>10000000</spring_stiffness>
-          </dynamics>
-      </axis>
-	  <axis2>
-          <xyz>0 1 0 </xyz>
-	      <dynamics>
-              <damping>0</damping>
-              <friction>10000</friction>
-              <spring_reference>1</spring_reference>
-              <spring_stiffness>1000000</spring_stiffness>
-          </dynamics>
-      </axis2>
-    </joint>
-'''
-    joint_string = f'''<joint name="joint_{parent_id}_{branch_id}" type="revolute">
-      <pose relative_to="branch_{parent_id}">0 0 {half_len} {r1} {r2} 0</pose>
-      <parent>branch_{parent_id}</parent>
-      <child>branch_{branch_id}</child>
+      <child>couple_{parent_id}_{branch_id}</child>
 	  <axis>
           <xyz>1 0 0 </xyz>
 	      <dynamics>
@@ -135,8 +129,35 @@ def add_branch(parent_id, branch_id, length, rad, depth):
       </axis>
     </joint>
 '''
-    joint = ET.fromstring(joint_string)
-    model.append(joint)
+    couple_string = f'''<link name="couple_{parent_id}_{branch_id}">
+      <pose relative_to="joint1_{parent_id}_couple_{branch_id}">0 0 0 0 0 0</pose>
+    </link>
+'''
+    joint2_string = f'''<joint name="joint2_{parent_id}_couple_{branch_id}" type="revolute">
+      <pose relative_to="couple_{parent_id}_{branch_id}">0 0 0.01 0 0 0</pose>
+      <parent>couple_{parent_id}_{branch_id}</parent>
+      <child>branch_{branch_id}</child>
+	  <axis>
+          <xyz>0 1 0 </xyz>
+	      <dynamics>
+              <damping>{damping}</damping>
+              <friction>0</friction>
+              <spring_reference>0</spring_reference>
+              <spring_stiffness>{stiffness}</spring_stiffness>
+          </dynamics>
+          <limit>
+            <!-- not actuated -->
+            <effort>0</effort>
+          </limit>
+      </axis>
+    </joint>
+'''
+    joint1 = ET.fromstring(joint1_string)
+    joint2 = ET.fromstring(joint2_string)
+    couple = ET.fromstring(couple_string)
+    model.append(joint1)
+    model.append(joint2)
+    model.append(couple)
 
 	# Apple origin is at tip of stalk
     apple_rad = 0.03
@@ -260,12 +281,12 @@ def recurse(parent_id, n):
     # Add 2 kids, and call recurse on each of them
     children =  ['a', 'b', 'c']
     #children =  ['a']
-    if n >= depth:
+    if n == 3:
         children = ['a']
     for i in children:
         branch_id = parent_id + i
         t = n
-        add_branch(parent_id, branch_id, 1/(6-t)* 1.5, 1/(5-t) * 0.05, depth-n)
+        add_branch(parent_id, branch_id, 1/(6-t)* 2, 1/(5-t) * 0.05, depth-n)
         recurse(branch_id, n-1)
 
 recurse('a', depth)
