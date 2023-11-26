@@ -19,7 +19,7 @@ from pydrake.all import (
 tree_model_name = "tree"
 your_model_filename = "/Users/udayan/Documents/SEAS/6.4212/6.4212Project/TreeGeneration/tree.sdf" # Write the absolute path to your file here
 
-iiwa_x, iiwa_y, iiwa_z = [0.3, -0.5, 0.1]
+iiwa_x, iiwa_y, iiwa_z = [0.3, -0.6, 0.5]
 iiwa_R, iiwa_P, iiwa_Y = [0, 0, 90]
 q_default = np.array([-0.2, 0.79, 0.32, -1.76, -0.36, 0.64, -0.73])
 
@@ -126,7 +126,7 @@ def CreateIiwaControllerPlantCollisions(q_default, iiwa_R, iiwa_P, iiwa_Y, iiwa_
     iiwa_idx = plant.GetModelInstanceByName(iiwa_name)
     plant.SetDefaultPositions(iiwa_idx, q_default)
 
-    return plant, diagram, visualizer, collision_visualizer
+    return plant, diagram, scene_graph, visualizer, collision_visualizer
 
 def CreateIiwaControllerPlant(q_default, iiwa_R, iiwa_P, iiwa_Y, iiwa_x, iiwa_y, iiwa_z, visualize=False):
     """creates plant that includes only the robot and gripper, used for controllers."""

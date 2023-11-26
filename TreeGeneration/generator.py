@@ -87,8 +87,8 @@ def add_branch(parent_id, branch_id, length, rad, depth):
     branch = ET.fromstring(branch_string)
     model.append(branch)
 
-    r1 = (random.random() - 0.5) * 1.5
-    r2 = (random.random() - 0.5) * 1.5
+    r1 = (random.random() - 0.5) * np.pi * 0.7
+    r2 = (random.random() - 0.5) * np.pi * 0.7
     stiffness = stiffnesses[depth]
     damping = dampings[depth]
 
@@ -213,7 +213,7 @@ def add_branch(parent_id, branch_id, length, rad, depth):
         </axis>
     </joint>
 '''
-    apple_z = (np.random.rand() - 0.5) * half_len
+    apple_z = (np.random.rand() - 0.5) * half_len + 0.4 * half_len
     apple_joint_string = f'''<joint name="joint_{branch_id}_apple" type="universal">
       <pose relative_to="branch_{branch_id}">{rad} 0 {apple_z} 0 {np.pi/2} 0</pose>
       <parent>branch_{branch_id}</parent>
@@ -252,16 +252,16 @@ def add_branch(parent_id, branch_id, length, rad, depth):
     model.append(apple_joint)
     return
 
-depth = 2
+depth = 3
 
 def recurse(parent_id, n):
     if n == 0:
         return
     # Add 2 kids, and call recurse on each of them
-    #children =  ['a', 'b', 'c']
-    children =  ['a']
-    #if n == depth:
-        #children = ['a']
+    children =  ['a', 'b', 'c']
+    #children =  ['a']
+    if n >= depth:
+        children = ['a']
     for i in children:
         branch_id = parent_id + i
         t = n
