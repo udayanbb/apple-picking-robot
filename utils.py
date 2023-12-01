@@ -6,6 +6,7 @@ from pydrake.systems.framework import DiagramBuilder
 from pydrake.all import (
     AddMultibodyPlantSceneGraph,
     CompositeTrajectory,
+	FixedOffsetFrame,
     MeshcatVisualizer,
     MeshcatVisualizerParams,
 	Parser,
@@ -128,7 +129,7 @@ def CreateIiwaControllerPlantCollisions(q_default, iiwa_R, iiwa_P, iiwa_Y, iiwa_
 
     return plant, diagram, scene_graph, visualizer, collision_visualizer
 
-def CreateIiwaControllerPlant(q_default, iiwa_R, iiwa_P, iiwa_Y, iiwa_x, iiwa_y, iiwa_z, visualize=False):
+def CreateIiwaControllerPlant(q_default, iiwa_R, iiwa_P, iiwa_Y, iiwa_x, iiwa_y, iiwa_z, relevant_contacts=None, visualize=False):
     """creates plant that includes only the robot and gripper, used for controllers."""
     robot_sdf_path = "package://drake/manipulation/models/iiwa_description/iiwa7/iiwa7_no_collision.sdf"
     #gripper_sdf_path = "package://drake/manipulation/models/wsg_50_description/sdf/schunk_wsg_50_no_tip.sdf"
@@ -167,6 +168,18 @@ def CreateIiwaControllerPlant(q_default, iiwa_R, iiwa_P, iiwa_Y, iiwa_x, iiwa_y,
         )
     else:
         visualizer = None
+
+    #######
+	# contact stuff
+    if relevant_contacts is not None:
+        for contact in relevant_contacts:
+            body_on_iiwa_name, body_on_tree_name, X_iiwaContact, contact_force = contact
+            body_on_iiwa = plant_robot.GetBodyByName(body_on_iiwa_name)
+            contact_frame_name = f"contact_{body_on_iiwa_name}_{body_on_tree_name}"
+            contact_frame = FixedOffsetFrame(contact_frame_name, body_on_iiwa, X_iiwaContact)
+            plant_robot.AddFrame(contact_frame)
+
+	######
 
     plant_robot.Finalize()
     diagram = builder.Build()
