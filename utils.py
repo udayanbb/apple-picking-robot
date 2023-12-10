@@ -291,7 +291,8 @@ class ExtractBodyPoseWithOffset(LeafSystem):
     def CalcOutput(self, context, output):
         poses = self.EvalAbstractInput(context, 0).get_value()
         pose = poses[int(self.body_index)]
-        pose = pose @ self._offset
+        #pose = pose @ self._offset
+        pose = self._offset
         output.get_mutable_value().set(pose.rotation(), pose.translation())
 
 def AddRgbdSensorWithPointCloudSystem(
@@ -378,7 +379,7 @@ def AddRgbdSensorWithPointCloudSystem(
         to_point_cloud.point_cloud_output_port(),
         f"{name}_point_cloud",
     )
-    return to_point_cloud
+    return to_point_cloud, depth_camera
 
 
 
