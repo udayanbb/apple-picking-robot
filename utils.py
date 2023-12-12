@@ -130,7 +130,7 @@ directives:
     name: wsg_on_iiwa
     X_PF:
       base_frame: iiwa_link_7
-      translation: [0, 0, 0.114]
+      translation: [0, 0, 0.09]
       rotation: !Rpy {{ deg: [90, 0, 90] }}
 - add_weld:
     parent: wsg_on_iiwa

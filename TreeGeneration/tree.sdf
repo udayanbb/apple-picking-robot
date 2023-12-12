@@ -311,12 +311,12 @@
       </axis2>
     </joint>
     <link name="branch_aaaa">
-      <pose relative_to="joint2_aaa_couple_aaaa">0 0 0.2 0 0 0</pose>
+      <pose relative_to="joint2_aaa_couple_aaaa">0 0 0.25 0 0 0</pose>
       <visual name="visual">
         <geometry>
           <cylinder>
             <radius>0.0125</radius>
-            <length>0.4</length>
+            <length>0.5</length>
           </cylinder>
         </geometry>
         <material>
